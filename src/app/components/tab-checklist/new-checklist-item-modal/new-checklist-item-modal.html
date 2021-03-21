@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            New checklist item
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input #nameInput (ionBlur)="refocus()" formControlName="name" autofocus="true"></ion-input>
+        </ion-item>
+    </form>
+</ion-content>
+<ion-footer>
+    <ion-button (click)="add()" color="success">Add</ion-button>
+    <ion-button (click)="dismiss()" fill="outline" color="danger">Dismiss</ion-button>
+</ion-footer>

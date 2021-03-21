@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab-inventory/tab-inventory.module').then(m => m.TabInventoryPageModule)
       },
       {
+        path: 'checklist',
+        loadChildren: () => import('../tab-checklist/tab-checklist.module').then(m => m.TabChecklistPageModule)
+      },
+      {
         path: 'receipts',
         loadChildren: () => import('../tab-receipts/tab-receipts.module').then(m => m.TabReceiptsPageModule)
       },
