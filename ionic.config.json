@@ -1,0 +1,7 @@
+{
+  "name": "caravanApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
