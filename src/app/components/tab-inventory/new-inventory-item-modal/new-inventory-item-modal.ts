@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IonInput, ModalController } from '@ionic/angular';
 import { IInventoryItemDto, InventoryItemDto } from 'src/app/classes/inventory.class';
@@ -9,8 +9,6 @@ import { StringUtil } from 'src/app/utils/string.util';
 @Component({
     selector: 'new-inventory-item-modal',
     templateUrl: 'new-inventory-item-modal.html',
-    styleUrls: ['./new-inventory-item-modal.scss'],
-    encapsulation: ViewEncapsulation.None
 
 })
 export class NewInventoryItemModal {

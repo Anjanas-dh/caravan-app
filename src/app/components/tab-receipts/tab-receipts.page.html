@@ -12,5 +12,24 @@
       <ion-title size="large">Receipts</ion-title>
     </ion-toolbar>
   </ion-header>
-  Goodday
+  <ion-card *ngFor="let receipt of receiptItems" (click)="toggleReceiptImage(receipt)">
+    <ion-card-header>
+      <ion-card-subtitle>{{ receipt.date | date:'d MMMM yyyy' }}</ion-card-subtitle>
+      <ion-card-title>{{ receipt.description }}
+        <ion-badge class="ion-float-right" [color]="receipt.receiptType.color">{{
+          receipt.receiptType.name }}</ion-badge>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>{{ receipt.costs | currency: 'EUR':'symbol':'0.2' }}</div>
+      <div *ngIf="receipt.showImage">
+        <img src="{{ '../../../../../assets/' + receipt.receiptUrl }}" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="ion-margin-bottom" (click)="addNewItem()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

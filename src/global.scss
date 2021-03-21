@@ -24,3 +24,11 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./assets/ionic-color-map.scss";
+
+@each $value in $ionic-colors {
+    .inventory-color-#{$value} > .alert-button-inner > .alert-radio-label {
+        color: var(--ion-color-#{$value}) !important;
+    }
+}
