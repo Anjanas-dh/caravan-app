@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { IChecklistItemDto } from 'src/app/classes/checklist.class';
-import { ChecklistService } from 'src/app/services/checklist.service';
+import { ChecklistService } from 'src/app/services/checklist/checklist.service';
 import { NewChecklistItemModal } from './new-checklist-item-modal/new-checklist-item-modal';
 
 @Component({

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { ChecklistService } from 'src/app/services/checklist.service';
-import { ChecklistServiceMock } from 'src/app/services/checklist.service.mock';
+import { ChecklistService } from 'src/app/services/checklist/checklist.service';
+import { ChecklistServiceMock } from 'src/app/services/checklist/checklist.service.mock';
 import { TabChecklistPage } from './tab-checklist.page';
 
 

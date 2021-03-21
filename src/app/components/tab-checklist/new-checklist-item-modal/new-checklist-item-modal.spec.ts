@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { ChecklistService } from 'src/app/services/checklist.service';
-import { ChecklistServiceMock } from 'src/app/services/checklist.service.mock';
+import { InventoryService } from 'src/app/services/inventory/inventory.service';
+import { InventoryServiceMock } from 'src/app/services/inventory/inventory.service.mock';
 import { NewChecklistItemModal } from './new-checklist-item-modal';
-
 
 describe('NewChecklistItemModal', () => {
     let component: NewChecklistItemModal;
@@ -16,7 +15,7 @@ describe('NewChecklistItemModal', () => {
                 IonicModule.forRoot()
             ],
             providers: [
-                { provide: ChecklistService, useFactory: () => ChecklistServiceMock.instance() },
+                { provide: InventoryService, useFactory: () => InventoryServiceMock.instance() },
             ]
         }).compileComponents();
 

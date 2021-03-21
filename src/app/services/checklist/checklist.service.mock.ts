@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { ChecklistItemDtoDataMock } from '../mocks/checklist.mock';
+import { ChecklistItemDtoDataMock } from '../../mocks/checklist.mock';
 import { ChecklistService, IChecklistService } from './checklist.service';
 
 export class ChecklistServiceMock {

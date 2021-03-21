@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { ChecklistItemDto } from "../classes/checklist.class";
-import { ChecklistItemDtoDataMock } from "../mocks/checklist.mock";
+import { ChecklistItemDto } from "src/app/classes/checklist.class";
+import { ChecklistItemDtoDataMock } from "src/app/mocks/checklist.mock";
 
 export interface IChecklistService {
     getChecklistItems(): Observable<ChecklistItemDto[]>;
@@ -9,7 +9,6 @@ export interface IChecklistService {
     updateChecklistItem(item: ChecklistItemDto): Observable<ChecklistItemDto>;
     deleteChecklistItem(item: ChecklistItemDto): Observable<ChecklistItemDto>;
 }
-
 
 @Injectable()
 export class ChecklistService implements IChecklistService {

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IonInput, ModalController } from '@ionic/angular';
 import { ChecklistItemDto, IChecklistItemDto } from 'src/app/classes/checklist.class';
-import { ChecklistService } from 'src/app/services/checklist.service';
+import { ChecklistService } from 'src/app/services/checklist/checklist.service';
 import { FormUtil } from 'src/app/utils/form.util';
 import { StringUtil } from 'src/app/utils/string.util';
 
