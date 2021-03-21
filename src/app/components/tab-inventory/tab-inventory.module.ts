@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { InventoryService } from 'src/app/services/inventory/inventory.service';
+import { NewInventoryItemModalModule } from './new-inventory-item-modal/new-inventory-item-modal.module';
 import { TabInventoryPageRoutingModule } from './tab-inventory-routing.module';
 import { TabInventoryPage } from './tab-inventory.page';
 
@@ -11,8 +13,10 @@ import { TabInventoryPage } from './tab-inventory.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    TabInventoryPageRoutingModule
+    TabInventoryPageRoutingModule,
+    NewInventoryItemModalModule,
   ],
-  declarations: [TabInventoryPage]
+  declarations: [TabInventoryPage],
+  providers: [InventoryService]
 })
 export class TabInventoryPageModule { }
