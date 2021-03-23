@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { InventoryService } from 'src/app/services/inventory/inventory.service';
+import { MyToastController } from '../toast/toast';
 import { NewInventoryItemModalModule } from './new-inventory-item-modal/new-inventory-item-modal.module';
 import { TabInventoryPageRoutingModule } from './tab-inventory-routing.module';
 import { TabInventoryPage } from './tab-inventory.page';
@@ -17,6 +18,6 @@ import { TabInventoryPage } from './tab-inventory.page';
     NewInventoryItemModalModule,
   ],
   declarations: [TabInventoryPage],
-  providers: [InventoryService]
+  providers: [InventoryService, MyToastController]
 })
 export class TabInventoryPageModule { }

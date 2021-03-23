@@ -13,11 +13,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <ion-item *ngFor="let item of checklistItems">
-      <ion-label>{{ item.name }}</ion-label>
-      <ion-toggle slot="start" [name]="item.name" color="success" [checked]="item.done"
-        (ionChange)="toggleChanged(item)"></ion-toggle>
-    </ion-item>
+    <ion-item-sliding #item *ngFor="let item of checklistItems">
+      <ion-item>
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-toggle slot="start" [name]="item.name" color="success" [checked]="item.done"
+          (ionChange)="toggleChanged(item)"></ion-toggle>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable (click)="deleteChecklistItem(item)"> Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button class="ion-margin-bottom" (click)="addNewItem()">

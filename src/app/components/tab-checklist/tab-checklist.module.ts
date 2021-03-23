@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ChecklistService } from 'src/app/services/checklist/checklist.service';
+import { MyToastController } from '../toast/toast';
 import { NewChecklistItemModalModule } from './new-checklist-item-modal/new-checklist-item-modal.module';
 import { TabChecklistPageRoutingModule } from './tab-checklist-routing.module';
 import { TabChecklistPage } from './tab-checklist.page';
@@ -16,6 +17,6 @@ import { TabChecklistPage } from './tab-checklist.page';
     NewChecklistItemModalModule,
   ],
   declarations: [TabChecklistPage],
-  providers: [ChecklistService]
+  providers: [ChecklistService, MyToastController]
 })
 export class TabChecklistPageModule { }

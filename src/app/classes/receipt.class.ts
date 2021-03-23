@@ -5,7 +5,6 @@ export class ReceiptItemDto implements IReceiptItemDto {
     receiptType: IReceiptTypeDto;
     costs: number;
     receiptUrl: string;
-    showImage?: boolean;
 
     constructor(data?: IReceiptItemDto) {
         if (data) {
@@ -24,7 +23,6 @@ export interface IReceiptItemDto {
     receiptType: IReceiptTypeDto;
     costs: number;
     receiptUrl: string;
-    showImage?: boolean;
 }
 
 export class ReceiptTypeDto implements IReceiptTypeDto {

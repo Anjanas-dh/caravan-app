@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ChecklistService } from 'src/app/services/checklist/checklist.service';
-import { NewReceiptItemModal } from './new-receipt-item-modal';
+import { ReceiptItemModal } from './receipt-item-modal';
 
 @NgModule({
     imports: [
@@ -12,7 +12,7 @@ import { NewReceiptItemModal } from './new-receipt-item-modal';
         FormsModule,
         ReactiveFormsModule,
     ],
-    declarations: [NewReceiptItemModal],
+    declarations: [ReceiptItemModal],
     providers: [ChecklistService]
 })
-export class NewReceiptItemModalModule { }
+export class ReceiptItemModalModule { }

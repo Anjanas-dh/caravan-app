@@ -12,23 +12,30 @@
       <ion-title size="large">Receipts</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card *ngFor="let receipt of receiptItems" (click)="toggleReceiptImage(receipt)">
-    <ion-card-header>
-      <ion-card-subtitle>{{ receipt.date | date:'d MMMM yyyy' }}</ion-card-subtitle>
-      <ion-card-title>{{ receipt.description }}
-        <ion-badge class="ion-float-right" [color]="receipt.receiptType.color">{{
-          receipt.receiptType.name }}</ion-badge>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div>{{ receipt.costs | currency: 'EUR':'symbol':'0.2' }}</div>
-      <div *ngIf="receipt.showImage">
-        <img src="{{ '../../../../../assets/' + receipt.receiptUrl }}" />
-      </div>
-    </ion-card-content>
-  </ion-card>
+
+  <ion-list>
+    <ion-item-sliding #receipt *ngFor="let receipt of receiptItems">
+      <ion-item>
+        <ion-label>
+          <div>
+            <h3>{{ receipt.date | date:'d MMMM yyyy' }} <ion-badge [color]="receipt.receiptType.color">{{
+                receipt.receiptType.name }}</ion-badge>
+            </h3>
+            <p><i>{{ receipt.description }} <a
+                  *ngIf="receipt.receiptUrl && StringUtil.NotNullOrEmpty(receipt.receiptUrl)"
+                  [href]="receipt.receiptUrl" target="_blank">Show receipt</a></i></p>
+          </div>
+        </ion-label>
+        <ion-note slot="end" color="tertiary">{{ receipt.costs | currency: 'EUR':'symbol':'0.2' }}</ion-note>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="updateReceipt(receipt)"> Edit </ion-item-option>
+        <ion-item-option color="danger" expandable (click)="deleteReceipt(receipt)"> Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="ion-margin-bottom" (click)="addNewItem()">
+    <ion-fab-button class="ion-margin-bottom" (click)="createReceipt()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

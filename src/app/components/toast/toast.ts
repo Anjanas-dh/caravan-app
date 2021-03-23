@@ -10,8 +10,10 @@ export class MyToastController {
 
     async openToast(message: string) {
         const toast = await this.toastController.create({
+            position: 'top',
+            color: 'success',
             message: message,
-            duration: 2000
+            duration: 2000,
         });
         toast.present();
     }

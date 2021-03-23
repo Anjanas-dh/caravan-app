@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            New receipt item
+            {{ modalText }}
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -26,7 +26,10 @@
             <ion-label position="stacked">Costs</ion-label>
             <ion-input type="number" formControlName="costs"></ion-input>
         </ion-item>
-        <!--  ReceiptUrl: uploading images -->
+        <ion-item>
+            <ion-label position="stacked">Receipt url to image</ion-label>
+            <ion-input formControlName="receiptUrl"></ion-input>
+        </ion-item>
     </form>
 </ion-content>
 <ion-footer>

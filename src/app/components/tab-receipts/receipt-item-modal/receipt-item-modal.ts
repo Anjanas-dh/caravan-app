@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { IReceiptItemDto, IReceiptTypeDto, ReceiptItemDto } from 'src/app/classes/receipt.class';
 import { ReceiptService } from 'src/app/services/receipt/receipt.service';
 import { DateUtil } from 'src/app/utils/date.util';
+import { ActionEnum } from 'src/app/utils/enum.util';
 import { FormUtil } from 'src/app/utils/form.util';
-import { NumberUtil } from 'src/app/utils/number.util';
+import { Guid } from 'src/app/utils/guid.util';
 
 @Component({
-    selector: 'new-receipt-item-modal',
-    templateUrl: 'new-receipt-item-modal.html',
+    selector: 'receipt-item-modal',
+    templateUrl: 'receipt-item-modal.html',
 })
 
-export class NewReceiptItemModal implements OnInit {
+export class ReceiptItemModal implements OnInit {
+    @Input('updateData') updateData: IReceiptItemDto;
+    @Input('action') action: ActionEnum;
     form: FormGroup = new FormGroup({});
     receiptTypes: IReceiptTypeDto[] = [];
+
+    get modalText(): string {
+        return this.action == ActionEnum.Create ? 'Create receipt' : 'Update receipt';
+    }
 
     constructor(private receiptService: ReceiptService,
         private modalController: ModalController) {
@@ -26,13 +33,27 @@ export class NewReceiptItemModal implements OnInit {
             receiptType: new FormControl(null, Validators.required),
             costs: new FormControl(null, Validators.required),
             receiptUrl: new FormControl(null),
-        })
+        });
+        this.form.markAsPristine();
+        this.form.markAsUntouched();
     }
 
     ngOnInit() {
         this.receiptService.getReceiptTypeItems().toPromise().then((types: IReceiptTypeDto[]) => {
             this.receiptTypes = types;
         });
+        if (this.updateData) {
+            this.form.setValue({
+                id: this.updateData.id,
+                date: DateUtil.ToISOString(this.updateData.date),
+                description: this.updateData.description,
+                receiptType: this.updateData.receiptType,
+                costs: this.updateData.costs,
+                receiptUrl: this.updateData.receiptUrl,
+            });
+            this.form.markAsPristine();
+            this.form.markAsUntouched();
+        }
     }
 
     add() {
@@ -42,21 +63,29 @@ export class NewReceiptItemModal implements OnInit {
             return;
         }
         const dto = new ReceiptItemDto({
-            id: (new Date(this.form.controls.date.value).getTime() + NumberUtil.RandomNumber(false)).toString(),
+            id: this.updateData ? this.form.controls.id.value : Guid.Generate(),
             date: DateUtil.ISOToDate(this.form.controls.date.value),
             description: this.form.controls.description.value,
             receiptType: this.form.controls.receiptType.value,
             costs: this.form.controls.costs.value,
             receiptUrl: this.form.controls.receiptUrl.value,
         });
-        this.receiptService.createReceiptItem(dto).toPromise().then((createdItem: IReceiptItemDto) => {
-            this.dismiss(dto); // this.dismiss(createdItem);
-        })
+        if (this.updateData) {
+            this.receiptService.updateReceiptItem(dto).toPromise().then((updatedItem: IReceiptItemDto) => {
+                this.dismiss(ActionEnum.Update, dto); // this.dismiss(updatedItem);
+            })
+        } else {
+
+            this.receiptService.createReceiptItem(dto).toPromise().then((createdItem: IReceiptItemDto) => {
+                this.dismiss(ActionEnum.Create, dto); // this.dismiss(createdItem);
+            })
+        }
     }
-    dismiss(item?: IReceiptItemDto) {
+    dismiss(action: ActionEnum, item?: IReceiptItemDto) {
         this.modalController.dismiss({
             'dismissed': true,
-            'item': item ? item : null
+            'item': item ? item : null,
+            'action': action,
         });
     }
 }

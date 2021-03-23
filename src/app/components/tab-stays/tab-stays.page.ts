@@ -66,7 +66,7 @@ export class TabStaysPage implements OnInit {
     }
     // END temp delete
     return this.staysService.deleteStaysItem(item).toPromise().then((stay: IStaysItemDto) => {
-      this.toastController.openToast(`Stay on ${this.datePipe.transform(stay.date, 'dd-MM-yyyy')} is deleted`)
+      this.toastController.openToast(`Stay on "${this.datePipe.transform(stay.date, 'dd-MM-yyyy')}" is deleted`)
     })
   }
 
@@ -90,7 +90,7 @@ export class TabStaysPage implements OnInit {
         this.staysItems[indexes.stayItemsIndex] = data.item;
       }
       this.prepareGroupedData(this.staysItems);
-      this.toastController.openToast(`Stay on ${this.datePipe.transform((data.item as IStaysItemDto).date, 'dd-MM-yyyy')} is ${data.action == ActionEnum.Create ? 'created' : 'updated'}`)
+      this.toastController.openToast(`Stay on "${this.datePipe.transform((data.item as IStaysItemDto).date, 'dd-MM-yyyy')}" is ${data.action == ActionEnum.Create ? 'created' : 'updated'}`)
     }
   }
 

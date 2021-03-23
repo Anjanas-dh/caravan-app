@@ -12,12 +12,13 @@
       <ion-title size="large">Inventory</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-grid>
+  <ion-grid size="11">
     <ion-row class="ion-align-items-center ion-justify-content-center">
       <ion-col></ion-col>
       <ion-col>In caravan?</ion-col>
       <ion-col>At Anja's?</ion-col>
       <ion-col>At Loes'?</ion-col>
+      <ion-col></ion-col>
     </ion-row>
     <ion-row *ngFor="let item of inventoryItems" class="ion-align-items-center ion-justify-content-center">
       <ion-col>
@@ -46,9 +47,14 @@
           </ion-toggle>
         </ion-item>
       </ion-col>
-
+      <ion-col>
+        <ion-button (click)="deleteItem(item)" shape="round" color="danger" fill="outline" size="small">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button class="ion-margin-bottom" (click)="addNewItem()">
       <ion-icon name="add"></ion-icon>
