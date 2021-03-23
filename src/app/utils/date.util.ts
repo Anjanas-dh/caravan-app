@@ -1,9 +1,6 @@
+import { MonthsEnum } from "./enum.util";
+
 export module DateUtil {
-    /**
-        * Returns a date as a string value in ISO format.
-        * Including the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).
-        * @param date
-        */
     export function ToISOString(date: Date, onlyDate?: boolean): string {
         if (IsDate(date) && !isNaN(date.getTime())) {
             const dateString = new Date(date.getTime() - date.getTimezoneOffset() * MinuteTicks).toISOString();
@@ -12,11 +9,6 @@ export module DateUtil {
         return null;
     }
 
-    /**
-     * Returns a date.
-     *  Including the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).
-     * @param dateString
-     */
     export function ISOToDate(dateString: string): Date {
         if (!dateString) {
             return null;
@@ -24,24 +16,40 @@ export module DateUtil {
         let date = new Date(dateString);
         return new Date(date.getTime() + date.getTimezoneOffset() * MinuteTicks);
     }
-}
 
-/**
-     * Returns true if object is type of Date | '[object Date]'
-     * @param date
-     */
-export function IsDate(date: Date): boolean {
-    if (date == undefined) {
-        return false;
-    }
-    if (Object.prototype.toString.call(date) === "[object Date]") {
-        if (isNaN(date.getTime())) {
+
+    export function IsDate(date: Date): boolean {
+        if (date == undefined) {
             return false;
-        } else {
-            return true;
         }
-    } else {
-        return false;
+        if (Object.prototype.toString.call(date) === "[object Date]") {
+            if (isNaN(date.getTime())) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    export function GetMonthEnumByDate(date: Date): MonthsEnum {
+        const month = IsDate(date) ? date.getMonth() : null;
+        if (!(month >= 0)) { console.error("GetMonthEnumByDate Invalid date"); return null; }
+        switch (month) {
+            case 0: return MonthsEnum.January;
+            case 1: return MonthsEnum.February;
+            case 2: return MonthsEnum.March;
+            case 3: return MonthsEnum.April;
+            case 4: return MonthsEnum.May;
+            case 5: return MonthsEnum.June;
+            case 6: return MonthsEnum.Juli;
+            case 7: return MonthsEnum.August;
+            case 8: return MonthsEnum.September;
+            case 9: return MonthsEnum.October;
+            case 10: return MonthsEnum.November;
+            case 11: return MonthsEnum.December;
+        }
     }
 }
 

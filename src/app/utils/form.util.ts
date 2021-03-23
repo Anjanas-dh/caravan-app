@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { AbstractControl, FormGroup } from "@angular/forms";
 
 export module FormUtil {
     export function ValidateAll(formGroup: FormGroup) {
@@ -10,5 +10,11 @@ export module FormUtil {
                 ValidateAll(control);
             }
         });
+    }
+    export function InValid(control: AbstractControl) {
+        if (!control) {
+            return false;
+        }
+        return control.invalid && (control.dirty || control.touched);
     }
 }
